@@ -1,0 +1,80 @@
+* { margin: 0; padding: 0; }
+html {background: #8ECC5F; }
+body { font: 14px/1.4 Georgia, serif; }
+article, aside, figure, footer, header, nav, section {display: block; }
+#pagewrap{ 
+	margin: 0 auto 10px; 
+	background: #FFFFFF; 
+	width: 900px; 
+	height: 900px; 
+	padding: 10px;
+	box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
+	}
+
+h1 { font: 36px Georgia, Arial, Sans-Serif; color: #483c25; }
+h2 { font: 30px Calligraffiti, Helvetica, Arial; color: #cdb377; margin: 0 0 0 60px; }
+h3 { font: 25px Bodoni MT, Arial, Sans-Serif; color: #a57c51; }
+h4 { font: 20px Bodoni MT, Arial, Sans-Serif; color: #483c25; }
+a:link{ color: #56A0D3; text-decoration: none; }
+a:hover { color: #000000; }
+img{
+	position: relative;
+	float: left; 
+	box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
+	margin: 10px
+	}
+	
+#header{
+	margin: 80px 0px 70px 100px;
+}
+#navigation{
+margin: 0px 0px 0px 50px;
+font: 55px;
+}
+
+#mylist, #recipes, #invitations{
+	background: #E1E1E1;
+	padding: 10px 20px 10px 20px;
+	border-radius: 15px 15px 0px 0px;
+	-moz-border-radius: 15px 15px 0px 0px;
+	-webkit-border-radius: 15px 15px 0px 0px;
+	}
+	
+#mylist{
+background: #EBE879;
+}
+
+#register{
+margin: 0px 0px 0px 750px;
+
+}
+
+#sales{
+padding: 0px 0px 40px 250px;
+}
+
+#main{
+position: relative;
+background: #EBE879;
+padding: 50px;
+margin: 0px 50px 0px 50px;
+height: 450px;
+border-radius: 0px 15px 15px 15px;
+	-moz-border-radius: 0px 15px 15px 15px;
+	-webkit-border-radius: 0px 15px 15px 15px;
+}
+
+
+
+footer {
+		width: 900px;
+		margin: 200px auto 20px;
+		color: #FFFFFF;
+	}
+
+
+
