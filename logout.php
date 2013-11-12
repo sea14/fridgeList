@@ -1,5 +1,11 @@
 <?php
 
-	<!--for logging a user out. ends session. I think. don't remember syntax off top of head. -->
+	session_start();
+	$old_user = $_SESSION['valid_user'};
+	$_SESSION = array();
+	if (isset_($_COOKIE[session_name()])) {
 
+		setcookie(session_name(), '', time()-42000, '/');
+	}
+	session_destroy();
 ?>
