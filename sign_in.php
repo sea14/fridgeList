@@ -24,6 +24,19 @@
 		//connect to our lovely db
 		require "dbconnect.php";
 
-		<!--will finish writing rest of login script later-->
+		//query database
+		$query = 'select usertype from table ' . "where username = '$login_user' " . "and password = sha1('$login_pass')";
+
+		$result = mysql_query($query);
+
+		$num_row = mysql_num_rows($result);
+
+		if($num_rows>0){
+
+			session_start(); //begin the session
+			$row = mysql_fetch_row($result);
+			$_SESSION['valid_user'] = $login_user;
+			$_SESSION['usertype'] = $row[0];
 	}
+	mysql_close($db);
 ?>
