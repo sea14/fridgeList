@@ -1,4 +1,10 @@
-<?php
+<!DOCTYPE html>
+<meta charset=UTF-8>
+    <title>Fridge List</title>
+	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+  <body>
+  <?php
 
 	<!--code for sign in php session goes here. wheee-->
 	//initialize our variables, security precautions
@@ -40,3 +46,50 @@
 	}
 	mysql_close($db);
 ?>
+
+
+<div id="pagewrap">
+  <div id="header">
+  <img src="images/fridgeList_logo.png" alt="Fridge List Logo"></img>
+  </div>
+
+<div class="clear"></div>
+   
+  <div id="register">
+	<a href="sign_in.html">Sign In</a>/<a href="register.html">Register</a>
+	</div>
+	
+  <div id="navigation"> 
+		<a href="#" id="mylist">My List</a>
+		<a href="#" id="recipes">Recipes</a>
+		<a href="#" id="invitations">Invitations</a>
+<?php
+
+	if(isset($_SESSION['valid_user'])) {
+		//user has logged in
+	echo 'Welcome, ' . $_SESSION['valid_user'] . '<br>';
+	}else{
+		if(isset($login_user) && $login_user != "boop"){ //if we're having login problems
+		echo "There seems to be a problem with either your password or your username.}else{
+		echo "You're not logged in -- would you please do so below?";
+	}
+}
+
+
+?>
+
+
+?>		</div>
+	  	
+	<div id="main">
+	  <p>
+	  <form method - "post" action = "sign_in.php">
+	  Username: <input type="text" name="login_user"><br />
+  	Password: <input type="text" name="login_pass"><br />
+	  <input type="submit" name="Sign in" value="Sign in">
+	  </form>
+	  </p>
+  </div>
+   </div>
+   </body>
+ </html>
