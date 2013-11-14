@@ -45,6 +45,11 @@ font: 55px;
 background: #EBE879;
 }
 
+ul
+{
+    list-style-type: none;
+}
+
 #register{
 margin: 0px 0px 0px 750px;
 
