@@ -95,7 +95,6 @@ class userLogin
 	mysql_close($db);
 ?>
 
-
 <div id="pagewrap">
   <div id="header">
   <img src="images/fridgeList_logo.png" alt="Fridge List Logo"></img>
