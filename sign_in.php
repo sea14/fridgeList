@@ -6,6 +6,8 @@
   <body>
   <?php
 
+
+
 	<!--code for sign in php session goes here. wheee-->
 	//initialize our variables, security precautions
 

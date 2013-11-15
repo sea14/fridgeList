@@ -5,12 +5,15 @@
 	$u = 'username';
 	$p = 'password';
 	
-
 	$dbname = 'webdb';
 	
-	$db = mysql_connect($h, $u, $p)
-		or die('Could not make the connection');
+	//instance of the db
+	$db = new(mysqli($h,$u,$p);
 
-	mysql_select_db($dbname)
-		or die('Could not select db');
+	//select the db, or if not, die and tell us
+	$db->select_db($dbname)
+		or die('Could not make the connection');
+	
+i
+
 ?>
