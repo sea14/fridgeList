@@ -4,8 +4,54 @@
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
   </head>
   <body>
-  <?php
+<?php
 
+class userLogin
+{
+	protected $_email;
+	protected $_password;
+
+	protected $_db;
+	protected $_user;
+
+	public function __construct(PDO, $db, $email, $password)
+	{
+		$this->_db = $db;
+		$this->_email = $email;
+		$this->_password = $password;
+	}
+
+	public function login()
+	{
+
+		$user = $this->_checkCredentials();
+		if($user){
+			$this->_user = $user;
+			$_SESSIION['user_id'] = $user['id'];
+			return $user['id'];
+		}
+		return false;
+	}
+
+	protected function _checkCredentials()
+	{
+		$stmt = $this->_db->prepare('SELECT * FROM users WHERE email=?');
+		$stmt->execute(array($this->email));
+		if ($stmt->rowCount() > 0) {
+			$user = $stmt->fetch(PDO::FECTCH_ASSOC);
+			$submitted_pass = sha1($user['salt'] . $this->password);
+			if($submitted_pass == $user['password']) {
+				return $user;
+			}
+		}
+		return false;
+	}
+
+	public function getUser()
+	{
+		return $this->_user;
+	}
+}
 
 
 	<!--code for sign in php session goes here. wheee-->
