@@ -4,7 +4,7 @@
 
 	class recipe
 	{
-
+		public $recipe_id = '' //recipe id, pk
 		public $name = ''; //recipe name
 		public $url = ''; //recipe url
 	}
