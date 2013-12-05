@@ -44,35 +44,31 @@
 <?php
 
 	//now that we've got user input, create a record for them in the db
-	$stmt = $mysqli->prepare("INSERT INTO users VALUES (?, ?, ?, ?)");
-	$stmt->bind_param($firstName, $lastName, $email, $coupon);
+	
 
+	if(get_magic_quotes_gpc()){
+		
+		//security checks on user input
+		$firstName = htmlentities(strip_tags($_POST['firstName']));
+		$lastName = htmlentities(strip_tags($_POST['lastName']));
+		$email = htmlentities(strip_tags($_POST['email']));
+		$coupons = htmlentities(strip_tags($_POST['coupons']));
+	
+	}else{ //magic_quotes_gpc is off, use addslashes
 
-	//security checks on user input
-	$firstName = isset($_POST['firstName'])
-		? $myqli->real_escape_string($_POST['firstName'])
-		: '';
+		$firstName = addslashes(htmlentities(strip_tags($_POST['firstName']));
+		$lastName = addslashes(htmlentities(strip_tags($_POST['lastName'])));
+		$email = addslashes(htmlentities(strip_tags($_POST['email'])));
+		$coupons = addslashes(htmlentities(strip_tags($_POST['coupons'])));
 
-	$lastName = isset($_POST['lastName'])
-		? $mysqli->real_escape_string($_POST['lastName'])
-		: '';
+	}
 
-	$email = isset($_POST['email'])
-		? $mysqli->real_escape_string($_POST['email'])
-		: '';
-
-	$coupons = isset($_POST['coupons'])
-		? $mysqli->real_escape_string($_POST['coupons'])
-		: '';
-
-	//execute prepared statement
-	$stmt->execute();
-
+	//now we write our query
+	
 	printf("%d Row insterted.\n", $stmt->affected_rows);
 
 	//close statement and connection
-	$stmt->close();
-	$mysqli->close();
+	
 
 ?>
 
