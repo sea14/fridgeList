@@ -10,6 +10,6 @@
 
 	}
 
-	//there will be functions here once I figure out what they need to be
+	//check to see if user is in db
 
 ?>

@@ -1,19 +1,61 @@
+<!DOCTYPE html>
+<head>
+	<title>Register</title>
+</head>
+<body>
+
 <?php
 
 	//connect to db
-	require db.connect;
+	require 'connect/dbconnect.php';
 
-	//default variables for security reasons
-	$first = "none";
-	$last = "blah";
-	$email = "boop";
-	$email_v = "beep";
-	$coupon = "zero";
-	$no_coupon = "nada";	
+	//get user input, html form below
+?>
 
+<div id="pagewrap">
+  <div id="header">
+  <img src="images/fridgeList_logo.png" alt="Fridge List Logo"></img>
+  </div>
 
-	//get user input and clean it
+<div class="clear"></div>
+   
+  <div id="register">
+        <a href="sign_in.html">Sign In</a>/<a href="register.html">Register</a>
+        </div>
+        
+  <div id="navigation"> 
+                <a href="#" id="mylist">My List</a>
+                <a href="#" id="recipes">Recipes</a>
+                <a href="#" id="invitations">Invitations</a>
+  </div>
+
+  <div id="main">
+	<p>
+	<form method = "post" action = "register.php">
+	First Name:<input type="text" name="firstName"><br>
+	Last Name:<input type="text" name="lastName"><br>
+	Email:<input type="text" name="email"><br>
+	Confirm Email:<input type="text" name="confirm"><br>
+	Coupons?<input type = "checkbox" value = "Yes"><br>
+	</form>
+	</p>
+   </div>
+
+<?php
 
 	//now that we've got user input, create a record for them in the db
-	
+	$stmt = $mysqli->prepare("INSERT INTO users VALUES (?, ?, ?, ?)");
+	$stmt->bind_param($firstName, $lastName, $email, $coupon);
+
+	//execute prepared statement
+	$stmt->execute();
+
+	printf("%d Row insterted.\n", $stmt->affected_rows);
+
+	//close statement and connection
+	$stmt->close();
+	$mysqli->close();
+
 ?>
+
+</html>
