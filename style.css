@@ -1,58 +1,44 @@
 * { margin: 0; padding: 0; }
-html {background: #8ECC5F; }
+html {background: url(new_back.jpg); }
 body { font: 14px/1.4 Georgia, serif; }
 article, aside, figure, footer, header, nav, section {display: block; }
 #pagewrap{ 
-	margin: 0 auto 10px; 
-	background: #FFFFFF; 
+	margin: 0px auto 10px; 
 	width: 900px; 
 	height: 900px; 
 	padding: 10px;
+	}
+
+h1 { font: 36px Georgia, Arial, Sans-Serif; color: #483c25; }
+h2 { font: 30px Times New Roman; color: #cdb377; margin: 0 0 0 60px; }
+h3 { font: 25px Bodoni MT, Arial, Sans-Serif; color: #a57c51; }
+h4 { font: 20px Bodoni MT, Arial, Sans-Serif; color: #483c25; }
+a:link{ color: #FFFFFF; text-decoration: none; }
+a:hover { color: #d1ffaf; }
+
+#logo {
+	margin: 30px 0px -170px 190px;
+	}
+	
+#navigation {
+	background: #7fc24c;
+	width: 220px;
+	margin: -5px 50px;
+	padding: 10px 0px 10px 20px;
+	border-radius: 15px 15px 15px 15px;
+	-moz-border-radius: 15px 15px 15px 15px;
+	-webkit-border-radius: 15px 15px 15px 15px;
 	box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
 	-webkit-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
 	}
 
-h1 { font: 36px Georgia, Arial, Sans-Serif; color: #483c25; }
-h2 { font: 30px Calligraffiti, Helvetica, Arial; color: #cdb377; margin: 0 0 0 60px; }
-h3 { font: 25px Bodoni MT, Arial, Sans-Serif; color: #a57c51; }
-h4 { font: 20px Bodoni MT, Arial, Sans-Serif; color: #483c25; }
-a:link{ color: #56A0D3; text-decoration: none; }
-a:hover { color: #000000; }
-img{
-	position: relative;
-	float: left; 
-	margin: 10px
+#about, #list, #recipes {
+	padding: 0px 10px 0px 10px;
 	}
 	
-#header{
-	margin: 0px 0px 70px 30px;
-}
-#navigation{
-margin: 0px 0px 0px 50px;
-font: 55px;
-}
-
-#mylist, #recipes, #invitations{
-	background: #E1E1E1;
-	padding: 10px 20px 10px 20px;
-	border-radius: 15px 15px 0px 0px;
-	-moz-border-radius: 15px 15px 0px 0px;
-	-webkit-border-radius: 15px 15px 0px 0px;
-	}
-	
-#mylist{
-background: #EBE879;
-}
-
-ul
-{
-    list-style-type: none;
-}
-
 #register{
-margin: 0px 0px 0px 750px;
-
+margin: 140px 0px 0px 850px;
 }
 
 #sales{
@@ -61,13 +47,16 @@ padding: 0px 0px 40px 250px;
 
 #main{
 position: relative;
-background: #EBE879;
+background: #fdfcf8;
 padding: 50px;
-margin: 0px 50px 0px 50px;
-height: 450px;
-border-radius: 0px 15px 15px 15px;
-	-moz-border-radius: 0px 15px 15px 15px;
-	-webkit-border-radius: 0px 15px 15px 15px;
+margin: 20px 50px 0px 50px;
+height: 750px;
+border-radius: 15px 15px 15px 15px;
+	-moz-border-radius: 15px 15px 15px 15px;
+	-webkit-border-radius: 15px 15px 15px 15px;
+	box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
 }
 
 
@@ -92,3 +81,4 @@ a:visited{
 
 	color:#000;
 }
+
