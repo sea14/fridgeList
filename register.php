@@ -31,7 +31,7 @@
 
   <div id="main">
 	<p>
-	<form method = "post" action = "register.php">
+	<form method = "POST" action = "register.php">
 	First Name:<input type="text" name="firstName"><br>
 	Last Name:<input type="text" name="lastName"><br>
 	Email:<input type="text" name="email"><br>
@@ -46,6 +46,24 @@
 	//now that we've got user input, create a record for them in the db
 	$stmt = $mysqli->prepare("INSERT INTO users VALUES (?, ?, ?, ?)");
 	$stmt->bind_param($firstName, $lastName, $email, $coupon);
+
+
+	//security checks on user input
+	$firstName = isset($_POST['firstName'])
+		? $myqli->real_escape_string($_POST['firstName'])
+		: '';
+
+	$lastName = isset($_POST['lastName'])
+		? $mysqli->real_escape_string($_POST['lastName'])
+		: '';
+
+	$email = isset($_POST['email'])
+		? $mysqli->real_escape_string($_POST['email'])
+		: '';
+
+	$coupons = isset($_POST['coupons'])
+		? $mysqli->real_escape_string($_POST['coupons'])
+		: '';
 
 	//execute prepared statement
 	$stmt->execute();
