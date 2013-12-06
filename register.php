@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <head>
-	<title>Register</title>
+        <title>Register</title>
 </head>
 <body>
 
 <?php
 
-	//connect to db
-	require 'connect/dbconnect.php';
+        //connect to db
+        require 'connect/dbconnect.php';
 
-	//get user input, html form below
+        //get user input, html form below
 ?>
 
 <div id="pagewrap">
@@ -30,54 +30,49 @@
   </div>
 
   <div id="main">
-	<p>
-	<form method = "POST" action = "register.php">
-	First Name:<input type="text" name="firstName"><br>
-	Last Name:<input type="text" name="lastName"><br>
-	Email:<input type="text" name="email"><br>
-	Confirm Email:<input type="text" name="confirm"><br>
-	Password:<input type = "text" name="password"><br>
-	Coupons?<input type = "checkbox" value = "Yes"><br>
-	</form>
-	</p>
+        <p>
+        <form method = "POST" action = "register.php">
+        First Name:<input type="text" name="firstName"><br>
+        Last Name:<input type="text" name="lastName"><br>
+        Email:<input type="text" name="email"><br>
+        Confirm Email:<input type="text" name="confirm"><br>
+        Coupons?<input type = "checkbox" value = "Yes"><br>
+        </form>
+        </p>
    </div>
 
 <?php
 
-	//now that we've got user input, create a record for them in the db
-	
+        //now that we've got user input, create a record for them in the db
+        $stmt = $mysqli->prepare("INSERT INTO users VALUES (?, ?, ?, ?)");
+        $stmt->bind_param($firstName, $lastName, $email, $coupon);
 
-	if(get_magic_quotes_gpc()){
-		
-		//security checks on user input
-		$firstName = htmlentities(strip_tags($_POST['firstName']));
-		$lastName = htmlentities(strip_tags($_POST['lastName']));
-		$email = htmlentities(strip_tags($_POST['email']));
-		$password = sha1(htmlentities(strip_tags($_POST['password'])));
-		$coupons = htmlentities(strip_tags($_POST['coupons']));
-	
-	}else{ //magic_quotes_gpc is off, use addslashes
 
-		$firstName = addslashes(htmlentities(strip_tags($_POST['firstName'])));
-		$lastName = addslashes(htmlentities(strip_tags($_POST['lastName'])));
-		$email = addslashes(htmlentities(strip_tags($_POST['email'])));
-		$password = sha1(addslashes(htmlentities(strip_tags($_POST['password']))));
-		$coupons = addslashes(htmlentities(strip_tags($_POST['coupons'])));
+        //security checks on user input
+        $firstName = isset($_POST['firstName'])
+                ? $myqli->real_escape_string($_POST['firstName'])
+                : '';
 
-	}
+        $lastName = isset($_POST['lastName'])
+                ? $mysqli->real_escape_string($_POST['lastName'])
+                : '';
 
-	//now we write our query for registering a user
-	$query = 'insert into users (firstName, lastName, email, coupons, password) values'.
-		'($firstName, $lastName, $email, $coupons, $password)';
+        $email = isset($_POST['email'])
+                ? $mysqli->real_escape_string($_POST['email'])
+                : '';
 
-	$num_rows = mysql_num_rows($result);
-	if($num_rows>0){
-		echo "it worked!";
+        $coupons = isset($_POST['coupons'])
+                ? $mysqli->real_escape_string($_POST['coupons'])
+                : '';
 
-	}
+        //execute prepared statement
+        $stmt->execute();
 
-	//close statement and connection
-	mysql_close($db);	
+        printf("%d Row insterted.\n", $stmt->affected_rows);
+
+        //close statement and connection
+        $stmt->close();
+        $mysqli->close();
 
 ?>
 
