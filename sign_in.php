@@ -6,53 +6,6 @@
   <body>
 <?php
 
-class userLogin
-{
-	protected $_email;
-	protected $_password;
-
-	protected $_db;
-	protected $_user;
-
-	public function __construct(PDO, $db, $email, $password)
-	{
-		$this->_db = $db;
-		$this->_email = $email;
-		$this->_password = $password;
-	}
-
-	public function login()
-	{
-
-		$user = $this->_checkCredentials();
-		if($user){
-			$this->_user = $user;
-			$_SESSIION['user_id'] = $user['id'];
-			return $user['id'];
-		}
-		return false;
-	}
-
-	protected function _checkCredentials()
-	{
-		$stmt = $this->_db->prepare('SELECT * FROM users WHERE email=?');
-		$stmt->execute(array($this->email));
-		if ($stmt->rowCount() > 0) {
-			$user = $stmt->fetch(PDO::FECTCH_ASSOC);
-			$submitted_pass = sha1($user['salt'] . $this->password);
-			if($submitted_pass == $user['password']) {
-				return $user;
-			}
-		}
-		return false;
-	}
-
-	public function getUser()
-	{
-		return $this->_user;
-	}
-}
-
 
 	<!--code for sign in php session goes here. wheee-->
 	//initialize our variables, security precautions
@@ -61,7 +14,7 @@ class userLogin
 	$login_pass = "beep";
 
 	//user has given us a username and password, so try to log them in
-	if(isset($_POST['login_user']) && isset($_POST['login_pass])){
+	if(isset($_POST['login_user']) && isset($_POST['login_pass'])){
 
 		//check for magic quotes, sanitize user input
 		if(get_magic_quotes_gpc()){
@@ -76,10 +29,10 @@ class userLogin
 			$login_pass = addslashes(htmlentities(strip_tags($_POST['login_pass']));			
 		}
 		//connect to our lovely db
-		require "dbconnect.php";
+		require "connect/dbconnect.php";
 
 		//query database
-		$query = 'select usertype from table ' . "where username = '$login_user' " . "and password = sha1('$login_pass')";
+		$query = 'select userid from users ' . "where email = '$login_user' " . "and password = sha1('$login_pass')";
 
 		$result = mysql_query($query);
 
@@ -97,7 +50,7 @@ class userLogin
 
 <div id="pagewrap">
   <div id="header">
-  <img src="images/fridgeList_logo.png" alt="Fridge List Logo"></img>
+  <img src="images/fridgeList_logo.png" alt="Fridge List Logo"/>
   </div>
 
 <div class="clear"></div>
@@ -114,19 +67,17 @@ class userLogin
 
 	if(isset($_SESSION['valid_user'])) {
 		//user has logged in
-	echo 'Welcome, ' . $_SESSION['valid_user'] . '<br>';
+	echo 'Welcome, ' . $_SESSION['valid_user'] .' You are logged in now! <br>';
 	}else{
 		if(isset($login_user) && $login_user != "boop"){ //if we're having login problems
-		echo "There seems to be a problem with either your password or your username.}else{
+		echo "There seems to be a problem with either your password or your username."}else{
 		echo "You're not logged in -- would you please do so below?";
 	}
 }
 
-
 ?>
 
-
-?>		</div>
+	</div>
 	  	
 	<div id="main">
 	  <p>
