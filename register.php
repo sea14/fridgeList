@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
+<head>
 <meta charset=UTF-8>
-    <title>Fridge List</title>
-  <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-  </head>
+<title>Fridge List</title>
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
   
   <body>
 
@@ -38,7 +38,7 @@
 ?>
 
   <div id="logo">
-  <a href="a2.html"><img src="fridgeList_logo.png" alt="Fridge List Logo"></img></a>
+  <a href="a2.html"><img src="fridgeList_logo.png" alt="Fridge List Logo"/></a>
  <p>&nbsp; &nbsp; an application designed for the busy and hungry! 
   </div> 
   
@@ -69,5 +69,6 @@
         </p>
    </div>
 
+</body>
 
 </html>
