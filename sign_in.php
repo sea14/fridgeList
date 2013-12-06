@@ -8,10 +8,6 @@
 
 
 	<!--code for sign in php session goes here. wheee-->
-	//initialize our variables, security precautions
-
-	$login_user = "boop";
-	$login_pass = "beep";
 
 	//user has given us a username and password, so try to log them in
 	if(isset($_POST['login_user']) && isset($_POST['login_pass'])){
@@ -20,23 +16,27 @@
 		if(get_magic_quotes_gpc()){
 
 			//magic_quotes is on, so do nothing
-			$login_user = htmlentities(strip_tags($_POST['login_user']));
-			$login_pass = htmlentities(strip_tags($_POST('login_pass']));
+			$login_user = $_POST['login_user']));
+			$login_pass = sha1($_POST('login_pass']));
 		} else {
 
 			//magic quotes isn't on, so use addslashes
-			$login_user = addslashes(htmlentities(strip_tags($_POST['login_user']));
-			$login_pass = addslashes(htmlentities(strip_tags($_POST['login_pass']));			
+			$login_user = addslashes($_POST['login_user']));
+			$login_pass = sha1(addslashes(($_POST['login_pass'])));			
 		}
 		//connect to our lovely db
 		require "connect/dbconnect.php";
 
-		//query database
-		$query = 'select userid from users ' . "where email = '$login_user' " . "and password = sha1('$login_pass')";
+		//construction of prepared statement
+		$sql = 'SELECT user_id, email, password FROM  users WHERE email=? AND password=?';
+		if($stmt = $mysqli->prepare($sql)) {
 
-		$result = mysql_query($query);
 
-		$num_row = mysql_num_rows($result);
+			
+			
+		}
+
+		
 
 		if($num_rows>0){
 
@@ -82,8 +82,8 @@
 	<div id="main">
 	  <p>
 	  <form method - "post" action = "sign_in.php">
-	  Username: <input type="text" name="login_user"><br />
-  	Password: <input type="text" name="login_pass"><br />
+	  Username: <input type="text" name="login_user"><br>
+  	Password: <input type="text" name="login_pass"><br>
 	  <input type="submit" name="Sign in" value="Sign in">
 	  </form>
 	  </p>
