@@ -49,7 +49,7 @@ $sql = "INSERT INTO users (firstName, lastName, email, coupons) VALUES (?, ?, ?,
 if($stmt = $mysqli->prepare($sql)) {
 
             //bind parameters
-            mysqli_stmt_bind_param($stmt,'ssss' $firstName, $lastName, $email, $coupons);
+            mysqli_stmt_bind_param($stmt,'ssss', $firstName, $lastName, $email, $coupons);
             $stmt->execute($stmt);
             $stmt->bind_result($firstName, $lastName, $email, $coupons);
           
