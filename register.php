@@ -1,33 +1,30 @@
+
 <!DOCTYPE html>
-<head>
-        <title>Register</title>
-</head>
-<body>
+<meta charset=UTF-8>
+    <title>Fridge List</title>
+  <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+  
+  <body>
 
-<?php
-
-        //connect to db
-        require 'connect/dbconnect.php';
-
-        //get user input, html form below
-?>
-
-<div id="pagewrap">
-  <div id="header">
-  <img src="images/fridgeList_logo.png" alt="Fridge List Logo"></img>
-  </div>
-
-<div class="clear"></div>
-   
+  <div id="logo">
+  <a href="a2.html"><img src="fridgeList_logo.png" alt="Fridge List Logo"></img></a>
+ <p>&nbsp; &nbsp; an application designed for the busy and hungry! 
+  </div> 
+  
   <div id="register">
-        <a href="sign_in.html">Sign In</a>/<a href="register.html">Register</a>
-        </div>
-        
-  <div id="navigation"> 
-                <a href="#" id="mylist">My List</a>
-                <a href="#" id="recipes">Recipes</a>
-                <a href="#" id="invitations">Invitations</a>
+  <h3><a href="sign_in.php">Sign In</a>/<a href="register.php">Register</a></h3>
   </div>
+  
+<div id="pagewrap">
+<div class="clear"></div>
+<div id="navigation">
+<a href="a2.html" id="home">Home</a>
+<a href="index.html" id="about">About</a>
+<a href="list.php" id="list">My List</a>
+<a href="recipes.php" id="recipes">Recipes</a>
+
+</div>  
 
   <div id="main">
         <p>
@@ -44,15 +41,19 @@
 
 <?php
 
-$sql = "INSERT INTO users (firstName, lastName, email, password, coupons) VALUES (?, ?, ?, ?, ?)";
+        //connect to db
+        require 'connect/dbconnect.php';
+
+
+$sql = "INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
 
 //still needs security check written
 if($stmt = $mysqli->prepare($sql)) {
 
             //bind parameters
-            $stmt->bind_param('sssss', $firstName, $lastName, $password, $email, $coupons);
+            $stmt->bind_param('ssss', $firstName, $lastName, $password, $email);
             $stmt->execute();
-            $stmt->bind_result($firstName, $lastName, $password, $email, $coupons);
+
             while($stmt->fetch()){
                 echo 'Hello, ' . $firstName . ' '. $lastName . 'Your email is ' . $email;
 
