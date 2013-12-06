@@ -8,6 +8,9 @@
 
 
 	<!--code for sign in php session goes here. wheee-->
+	session_start();
+
+
 
 	//user has given us a username and password, so try to log them in
 	if(isset($_POST['login_user']) && isset($_POST['login_pass'])){
@@ -16,25 +19,37 @@
 		if(get_magic_quotes_gpc()){
 
 			//magic_quotes is on, so do nothing
-			$login_user = $_POST['login_user']));
-			$login_pass = sha1($_POST('login_pass']));
+			$login_user = mysqli_real_escape_string($_POST['login_user'])));
+			$login_pass = mysqli_real_escape_string(sha1($_POST('login_pass'])));
 		} else {
 
 			//magic quotes isn't on, so use addslashes
-			$login_user = addslashes($_POST['login_user']));
-			$login_pass = sha1(addslashes(($_POST['login_pass'])));			
+			$login_user = mysqli_real_escape_string(addslashes($_POST['login_user'])));
+			$login_pass = mysqli_real_escape_string((sha1(addslashes(($_POST['login_pass']))));			
 		}
 		//connect to our lovely db
 		require "connect/dbconnect.php";
 
 		//construction of prepared statement
-		$sql = 'SELECT user_id, email, password FROM  users WHERE email=? AND password=?';
+		$sql = 'SELECT email, password FROM  users WHERE email=? AND password=?';
 		if($stmt = $mysqli->prepare($sql)) {
 
+			//bind parameters
+			$stmt->bind_param('ss' $login_user, $login_pass);
+			$stmt->execute();
+			$stmt->bind_result($login_pass, $login_user);
+			while ($stmt->fetch()) {
 
-			
-			
+					echo "$login_user";
+					echo "<br>";
+					
+			}
+		} else{
+
+			echo "prepare failed";
 		}
+		$stmt->close();
+		$mysqli->close();
 
 		
 
@@ -43,7 +58,7 @@
 			session_start(); //begin the session
 			$row = mysql_fetch_row($result);
 			$_SESSION['valid_user'] = $login_user;
-			$_SESSION['usertype'] = $row[0];
+			
 	}
 	mysql_close($db);
 ?>
