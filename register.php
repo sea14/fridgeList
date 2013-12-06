@@ -7,6 +7,36 @@
   
   <body>
 
+  <?php
+
+        //connect to db
+        require 'connect/dbconnect.php';
+
+
+          $sql = "INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
+
+          //still needs security check written
+          if($stmt = $mysqli->prepare($sql)) {
+
+            //bind parameters
+            $stmt->bind_param('ssss', $firstName, $lastName, $password, $email);
+            $stmt->execute();
+
+            while($stmt->fetch()){
+                echo 'Hello, ' . $firstName . ' '. $lastName . 'Your email is ' . $email;
+
+            }
+           
+            } else{
+
+            echo "prepare failed";
+        }
+        $stmt->close();
+        $mysqli->close();
+        echo "Done";
+
+?>
+
   <div id="logo">
   <a href="a2.html"><img src="fridgeList_logo.png" alt="Fridge List Logo"></img></a>
  <p>&nbsp; &nbsp; an application designed for the busy and hungry! 
@@ -39,34 +69,5 @@
         </p>
    </div>
 
-<?php
-
-        //connect to db
-        require 'connect/dbconnect.php';
-
-
-$sql = "INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
-
-//still needs security check written
-if($stmt = $mysqli->prepare($sql)) {
-
-            //bind parameters
-            $stmt->bind_param('ssss', $firstName, $lastName, $password, $email);
-            $stmt->execute();
-
-            while($stmt->fetch()){
-                echo 'Hello, ' . $firstName . ' '. $lastName . 'Your email is ' . $email;
-
-            }
-           
-            } else{
-
-            echo "prepare failed";
-        }
-        $stmt->close();
-        $mysqli->close();
-        echo "Done";
-
-?>
 
 </html>
