@@ -36,6 +36,7 @@
         Last Name:<input type="text" name="lastName"><br>
         Email:<input type="text" name="email"><br>
         Confirm Email:<input type="text" name="confirm"><br>
+        Password:<input type="text" name="password"><br>
         Coupons?<input type = "checkbox" value = "Yes"><br>
         </form>
         </p>
@@ -43,18 +44,20 @@
 
 <?php
 
-$sql = "INSERT INTO users (firstName, lastName, email, coupons) VALUES (?, ?, ?, ?)";
+$sql = "INSERT INTO users (firstName, lastName, email, password, coupons) VALUES (?, ?, ?, ?, ?)";
 
 //still needs security check written
 if($stmt = $mysqli->prepare($sql)) {
 
             //bind parameters
-            mysqli_stmt_bind_param($stmt,'ssss', $firstName, $lastName, $email, $coupons);
-            $stmt->execute($stmt);
-            $stmt->bind_result($firstName, $lastName, $email, $coupons);
-          
-            //insert
-            mysqli_stmt_execute($stmt);
+            $stmt->bind_param('ssss', $firstName, $lastName, $password, $email, $coupons);
+            $stmt->execute();
+            $stmt->bind_result($firstName, $lastName, $password, $email, $coupons);
+            while($stmt->fetch()){
+                echo 'Hello, ' . $firstName . ' '. $lastName . 'Your email is ' . $email;
+
+            }
+           
             } else{
 
             echo "prepare failed";
