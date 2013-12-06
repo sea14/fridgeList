@@ -50,7 +50,7 @@ $sql = "INSERT INTO users (firstName, lastName, email, password, coupons) VALUES
 if($stmt = $mysqli->prepare($sql)) {
 
             //bind parameters
-            $stmt->bind_param('ssss', $firstName, $lastName, $password, $email, $coupons);
+            $stmt->bind_param('sssss', $firstName, $lastName, $password, $email, $coupons);
             $stmt->execute();
             $stmt->bind_result($firstName, $lastName, $password, $email, $coupons);
             while($stmt->fetch()){
@@ -62,8 +62,8 @@ if($stmt = $mysqli->prepare($sql)) {
 
             echo "prepare failed";
         }
-        mysqli_stmt_close();
-        mysqli_close();
+        $stmt->close();
+        $mysqli->close();
         echo "Done";
 
 ?>
