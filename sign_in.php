@@ -42,7 +42,6 @@
 
 					echo "$login_user";
 					echo "<br>";
-					
 			}
 		} else{
 

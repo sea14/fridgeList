@@ -43,36 +43,25 @@
 
 <?php
 
-        //now that we've got user input, create a record for them in the db
-        $stmt = $mysqli->prepare("INSERT INTO users VALUES (?, ?, ?, ?)");
-        $stmt->bind_param($firstName, $lastName, $email, $coupon);
+$sql = "INSERT INTO users (firstName, lastName, email, coupons) VALUES (?, ?, ?, ?)";
 
+//still needs security check written
+if($stmt = $mysqli->prepare($sql)) {
 
-        //security checks on user input
-        $firstName = isset($_POST['firstName'])
-                ? $myqli->real_escape_string($_POST['firstName'])
-                : '';
+            //bind parameters
+            mysqli_stmt_bind_param($stmt,'ssss' $firstName, $lastName, $email, $coupons);
+            $stmt->execute($stmt);
+            $stmt->bind_result($firstName, $lastName, $email, $coupons);
+          
+            //insert
+            mysqli_stmt_execute($stmt);
+            } else{
 
-        $lastName = isset($_POST['lastName'])
-                ? $mysqli->real_escape_string($_POST['lastName'])
-                : '';
-
-        $email = isset($_POST['email'])
-                ? $mysqli->real_escape_string($_POST['email'])
-                : '';
-
-        $coupons = isset($_POST['coupons'])
-                ? $mysqli->real_escape_string($_POST['coupons'])
-                : '';
-
-        //execute prepared statement
-        $stmt->execute();
-
-        printf("%d Row insterted.\n", $stmt->affected_rows);
-
-        //close statement and connection
-        $stmt->close();
-        $mysqli->close();
+            echo "prepare failed";
+        }
+        mysqli_stmt_close();
+        mysqli_close();
+        echo "Done";
 
 ?>
 
