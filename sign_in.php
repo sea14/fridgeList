@@ -86,7 +86,7 @@
 <div id="navigation">
 <a href="a2.html" id="home">Home</a>
 <a href="index.html" id="about">About</a>
-<a href="list.php" id="list">My List</a>
+<a href="lists.php" id="list">My List</a>
 <a href="recipes.php" id="recipes">Recipes</a>
 
 </div>	
