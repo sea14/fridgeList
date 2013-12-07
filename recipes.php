@@ -12,7 +12,7 @@
 
 	class recipe
 	{
-		public $recipe_id = '' //recipe id, pk
+		public $recipe_id = ''; //recipe id, pk
 		public $name = ''; //recipe name
 		public $url = ''; //recipe url
 	}
@@ -27,7 +27,7 @@
 	}else{
 			echo "You're not logged in -- would you please do so below?";
 	}
-}
+	
 ?>
 
  <div id="logo">
