@@ -11,31 +11,33 @@ session_start();
   
 
     $email = $_POST['email'];
-    $password = md5($_POST['password']);
+    $password = $_POST['password'];
 
-    $query = "SELECT * FROM users WHERE email = '$email' AND password='$password'";
+    $query = "SELECT * FROM users WHERE email = '$email' "."and password = md5('$password')";
 
     $result = mysqli_query($mysqli, $query) or die(mysqli_error ());
 
-    $num_row = mysqli_num_rows($result);
+    $num_rows = mysqli_num_rows($result);
 
-      $row = mysqli_fetch_array($result);
+     
 
-      if($num_row >= 1){
+      if($num_rows > 0){
 
         echo "true";
         $_SESSION['email'] = $row['email'];
 
       }else{
 
+        echo $email . '\n';
+        echo $password . '\n';
+        echo md5($password) . '\n';
         echo "We could not log you in. Sorry!";
 
       }
   }
+?>
 
-}
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <meta charset=UTF-8>
     <title>Fridge List</title>
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
