@@ -36,8 +36,7 @@
   </script>
 
 <?php
-
-
+	
 	//require db connection
 	require 'connect/dbconnect.php';
 

@@ -15,10 +15,10 @@ $(document).ready(function() {
     };
     $("#submit").on("click", function () {
         if (!ValidateEmail($("#txtEmail").val())) {
-            alert("Invalid email address.");
+            $("#main").append("Oops! Your email address was not valid!");
         }
         else {
-            alert("Valid email address.");
+            $("#main").append("Congratulations! You successfully created an account!");
         }
     });
   });
@@ -30,17 +30,22 @@ $(document).ready(function() {
   <body>
 
 <?php
-  
         ini_set('display_errors',1);
         error_reporting(E_ALL);
-        require '../connect/dbconnect.php';
 
-                $firstName = (isset($_POST['firstName']) ? $_POST['firstName'] : null);
-                $lastName = (isset($_POST['lastName']) ? $_POST['lastName'] : null);
-                $email = (isset($_POST['email']) ? $_POST['email'] : null);
-                $password = (isset($_POST['password']) ? $_POST['password'] : null);
+        //require the db connection
+        require 'connect/dbconnect.php';
 
 
+        //if everything is set
+        if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['email']) && isset($_POST['password'])){
+
+                $firstName = $_POST['firstName'];
+                $lastName = $_POST['lastName'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+
+          //here's our query
           $sql = "INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
 
           if($stmt = $mysqli->prepare($sql)) {
@@ -60,8 +65,7 @@ $(document).ready(function() {
         }
         $stmt->close();
         $mysqli->close();
-
-
+      }
 ?>
 
 

@@ -23,7 +23,7 @@
   </div> 
   
   <div id="register">
-	<h3><a href="sign_in.php">Sign In</a>/<a href="register-2.html">Register</a></h3>
+	<h3><a href="sign_in.php">Sign In</a>/<a href="register.php">Register</a></h3>
 	</div>
 	
 <div id="pagewrap">
@@ -37,13 +37,8 @@
 </div>	
 
 	<div id="main">
-	<p><a href="register-2parts.php">Register</a> or <a href="sign_in.php">sign in</a> to start creating your grocery lists!<br /></p><br />
-	<form>
-	<h4>Insert "Hello, User (table: user, f_name)"</h4><br />
-	<h4>Insert Grocery List Title (table: list, name) here</h4>
-	<br />
-	<input type="submit" value="Create a New List">
-	</form>
+	<p><a href="register.php">Register</a> or <a href="sign_in.php">sign in</a> to start creating your grocery lists!<br /></p><br />
+	<p>Welcome to FridgeList! This is an application for creating grocery lists and saving your favorite recipe links in one convenient place!</p>
    </div>
   </div>
    </body>
