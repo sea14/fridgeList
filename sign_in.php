@@ -1,11 +1,38 @@
-<!DOCTYPE html>
+<?php
+ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
+session_start();
+  //require db connection
+  require 'connect/dbconnect.php';
+
+  //check if username and password are set. if so, try to log user in
+  if(isset($_POST['email']) && isset($_POST['password']) ){
+
+    $stmt = $mysqli->prepare("SELECT email FROM users WHERE email=? AND password=?");
+
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
+
+
+
+    $stmt->bind_param('ss', $email, $password);
+    $stmt->execute();
+    $stmt->bind_result($email, $password);
+    $stmt->fetch(); 
+
+  }
+
+
+  $stmt->close();
+  mysqli_close($mysqli);
+
+?><!DOCTYPE html>
 <meta charset=UTF-8>
     <title>Fridge List</title>
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
   
 
-  <script type="text/javascript">
+  <!--<script type="text/javascript">
   $(function() {
         var action = '';
         var form_data = '';
@@ -33,47 +60,13 @@
         return false;
     })
 
-});
+}); 
 
-  </script>
+  </script> -->
   </head>
   <body>
 
-<?php
-session_start();
-	//require db connection
-	require 'connect/dbconnect.php';
 
-	//check if username and password are set. if so, try to log user in
-	if(isset($_POST['email']) && isset($_POST['password']) ){
-
-		$stmt = $mysqli->prepare("SELECT user_id FROM users WHERE email=? AND password=?");
-
-		$email = $_POST['email'];
-		$password = md5($_POST['password']);
-		$stmt->bind_param('ss', $email, $password);
-		$stmt->bind_result($email, $password);
-		while ($stmt->fetch()) {
-
-			$result = mysqli_query($stmt);
-
-			$num_rows = mysql_num_rows($result);
-
-			if($num_rows>0){
-
-				session_start();
-				$row = mysqli_fetch_row($result);
-				$_SESSION['user'] = $email;
-				$_SESSION['name'] = $row[0];
-
-			}
-
-		
-	}
-
-}
-
-?>
 
 
  <div id="logo">
@@ -104,7 +97,12 @@ session_start();
         Password: <input type="password" id="password"  name="password"><br>
    <input type="submit" id="submit" value="submit">
 
+   <div id="userinfo"><?php echo $email; ?>
+
    </div>
   </div>
+
+
+
    </body>
  </html>
