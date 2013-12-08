@@ -27,32 +27,3 @@ $(function() {
 	});
 	return false;
 });
-
-
-//email validation script below
- function validateEmail (email){
-	var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-	if(filter.test(email)) {
-		return true;
-	}
-	else{
-	return false;
-	}
-   }
-
-}
-
-$(document).ready(function(e){
-	$('#password').click(function() {
-	 var email = $('#email').val();
-	if($.trim(email).length == 0) {
-		alert('Please enter a valid email address');
-	}
-	if (validateEmail(email)) {
-		alert('Congrats! You hava a valid email!);
-	}else{
-
-		alert('Please enter a valid email address');
-		}
-	});
-});
