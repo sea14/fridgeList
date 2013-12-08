@@ -26,7 +26,7 @@
           if($stmt = $mysqli->prepare($sql)) {
 
 
-            $stmt->bind_param('ssss', $firstName, $lastName, $password, $email);
+            $stmt->bind_param('ssss', $firstName, $lastName, $email, $password);
             $stmt->execute();
 
 
