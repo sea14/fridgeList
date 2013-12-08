@@ -48,8 +48,9 @@
 	if(isset($_POST['email']) && isset($_POST['password']) ){
 
 		$stmt = $mysqli->prepare("SELECT firstName FROM users WHERE email=? AND password=?");
+		
 		$email = $_POST['email'];
-		$password = $_POST['password'];
+		$password = md5($_POST['password']);
 
 		$stmt->bind_param('ss', $email, $password);
 		while ($stmt->fetch()) {
