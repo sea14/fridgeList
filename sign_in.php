@@ -7,32 +7,30 @@ session_start();
   //check if username and password are set. if so, try to log user in
   if(isset($_POST['email']) && isset($_POST['password']) ){
 
-
-    //another email existence validation check
-     $pattern = '/^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){255,})(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){65,}@)(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22))(?:\\.(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-+[a-z0-9]+)*\\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-+[a-z0-9]+)*)|(?:\\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\\]))$/iD';
-
-          $emailaddress = $_POST['email'];
-
-          if (preg_match($pattern, $emailaddress) === 1) {
-
-
-    $stmt = $mysqli->prepare("SELECT email FROM users WHERE email=? AND password=?");
+    //I hate to do this without prepared statements, buuut, in the interest of getting it operational
+  
 
     $email = $_POST['email'];
     $password = md5($_POST['password']);
 
+    $query = "SELECT * FROM users WHERE email = '$email' AND password='$password'";
 
+    $result = mysqli_query($mysqli, $query) or die(mysqli_error ());
 
-    $stmt->bind_param('ss', $email, $password);
-    $stmt->execute();
-    $stmt->bind_result($email, $password);
-    $stmt->fetch(); 
+    $num_row = mysqli_num_rows($result);
 
+      $row = mysqli_fetch_array($result);
 
-  
-  $stmt->close();
-  mysqli_close($mysqli);
+      if($num_row >= 1){
 
+        echo "true";
+        $_SESSION['email'] = $row['email'];
+
+      }else{
+
+        echo "We could not log you in. Sorry!";
+
+      }
   }
 
 }
