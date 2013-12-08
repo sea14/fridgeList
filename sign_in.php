@@ -13,7 +13,7 @@ session_start();
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM users WHERE email = '$email' "."and password = md5('$password')";
+    $query = "SELECT * FROM users WHERE email = '$email' "."and password = '$password'";
 
     $result = mysqli_query($mysqli, $query) or die(mysqli_error ());
 
@@ -28,9 +28,8 @@ session_start();
 
       }else{
 
-        echo $email . '\n';
-        echo $password . '\n';
-        echo md5($password) . '\n';
+        echo $email . '<br>';
+        echo $password . '<br>';
         echo "We could not log you in. Sorry!";
 
       }

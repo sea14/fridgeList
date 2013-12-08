@@ -51,7 +51,7 @@ $(document).ready(function() {
                   $firstName = $_POST['firstName'];
                   $lastName = $_POST['lastName'];
                   $email = $_POST['email'];
-                  $password = md5($_POST['password']);
+                  $password = $_POST['password'];
 
           //here's our query
           $sql = "INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
