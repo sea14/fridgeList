@@ -19,11 +19,11 @@ session_start();
     $stmt->bind_result($email, $password);
     $stmt->fetch(); 
 
-  }
-
-
+  
   $stmt->close();
   mysqli_close($mysqli);
+
+}
 
 ?><!DOCTYPE html>
 <meta charset=UTF-8>
