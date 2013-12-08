@@ -72,9 +72,9 @@
         <form method = "post" action = "register.php">
         First Name: <input type="text" name="firstName"><br>
         Last Name: <input type="text" name="lastName"><br>
-        Email: <input type="text" name="email"><br>
+        Email: <input type="text" name="email" id="email"><br>
         Confirm Email: <input type="text" name="confirm"><br>
-        Password: <input type="password" name="password"><br>
+        Password: <input type="password" name="password" id="password"><br>
   <input type="submit" value="submit">
 
         </form>
