@@ -1,1 +1,18 @@
 COMP 426 project
+
+This is the code behind the final project for COMP 426 in Fall 2013. It is intended as a display of a RESTful MVC.
+
+The following parts follow a RESTful Architecture and serve as "resources" for the application:
+
+* recipes.php
+* users.php
+* lists.php
+
+Meanwhile, these files serve as other portions of the interface that the user interacts with:
+
+* sign_in.php
+* register.php
+* index.php
+* logout.php
+
+
