@@ -34,17 +34,54 @@
 })});
 
   </script>
-  
+
+<?php
+
+
+	//require db connection
+	require 'connect/dbconnect.php';
+
+	$is_ajax = $_REQUEST['is_ajax'];
+	if(isset($is_ajax) && $is_ajax) {
+
+		$email = $_REQUEST['email'];
+		$password = $_REQUEST['password'];
+
+		//create query to check for existence of user input in the db
+
+
+		if($stmt = $mysqli->prepare("SELECT * FROM users WHERE email=? AND password=?")){
+			//bind parameters
+			$stmt->bind_param('ss', $email, $password);
+			$stmt->execute();
+			$stmt->bind_result($email, $password);
+
+			if( TRUE !== $stmt->fetch() ){
+
+				$return = FALSE;
+
+			}
+
+		$stmt->close();
+
+		return $return;
+
+		$mysqli->close();
+
+
+
+?>
+
   <body>
 
 ?>
  <div id="logo">
-  <a href="a2.html"><img src="fridgeList_logo.png" alt="Fridge List Logo"></a>
+  <a href="a2.php"><img src="fridgeList_logo.png" alt="Fridge List Logo"></a>
  <p>&nbsp; &nbsp; an application designed for the busy and hungry! 
   </div> 
   
   <div id="register">
-	<h3><a href="sign_in.html">Sign In</a>/<a href="register.html">Register</a></h3>
+	<h3><a href="sign_in.php">Sign In</a>/<a href="register.php">Register</a></h3>
 	</div>
 	
 <div id="pagewrap">
@@ -58,7 +95,7 @@
 </div>	
 
 	<div id="main">
-	<p><a href="register.html">Register</a> or <a href="sign_in.html">sign in</a> to start creating your grocery lists!<br /></p><br />
+	<p><a href="register.php">Register</a> or <a href="sign_in.php">sign in</a> to start creating your grocery lists!<br /></p><br />
 	<form method = "post" id="loginForm"  action = "sign_in.php">
         Email: <input type="text" id="email"  name="login_user"><br>
         Password: <input type="password" id="password"  name="login_pass"><br>
@@ -67,5 +104,3 @@
   </div>
    </body>
  </html>
-
-
