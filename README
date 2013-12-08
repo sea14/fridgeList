@@ -2,7 +2,7 @@ COMP 426 project
 
 This is the code behind the final project for COMP 426 in Fall 2013. It is intended as a display of a RESTful MVC.
 
-Model files:
+Model/Resource files:
  * users.php
  * recipes.php
  * lists.php
@@ -13,5 +13,7 @@ View Files:
  * logout.php
  * index.php
 
+Controller Files:
 
-
+ * display-recipes.php
+ * display-lists.php
