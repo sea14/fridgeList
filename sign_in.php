@@ -40,22 +40,35 @@
   <body>
 
 <?php
-	
+session_start();
 	//require db connection
 	require 'connect/dbconnect.php';
 
 	//check if username and password are set. if so, try to log user in
 	if(isset($_POST['email']) && isset($_POST['password']) ){
 
-		$stmt = $mysqli->prepare("SELECT firstName FROM users WHERE email=? AND password=?");
-		
+		$stmt = $mysqli->prepare("SELECT user_id FROM users WHERE email=? AND password=?");
+
 		$email = $_POST['email'];
 		$password = md5($_POST['password']);
-
 		$stmt->bind_param('ss', $email, $password);
+		$stmt->bind_result($email, $password);
 		while ($stmt->fetch()) {
 
-		echo "Welcome, " .firstName, " you are logged in!";
+			$result = mysqli_query($stmt);
+
+			$num_rows = mysql_num_rows($result);
+
+			if($num_rows>0){
+
+				session_start();
+				$row = mysqli_fetch_row($result);
+				$_SESSION['user'] = $email;
+				$_SESSION['name'] = $row[0];
+
+			}
+
+		
 	}
 
 }
@@ -84,10 +97,13 @@
 
 	<div id="main">
 	<p><a href="register.php">Register</a> or <a href="sign_in.php">sign in</a> to start creating your grocery lists!<br /></p><br />
+
+
 	<form method = "post" id="loginForm"  action = "sign_in.php">
         Email: <input type="text" id="email"  name="email"><br>
         Password: <input type="password" id="password"  name="password"><br>
-  <input type="submit" id="submit" value="submit">
+   <input type="submit" id="submit" value="submit">
+
    </div>
   </div>
    </body>
