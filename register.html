@@ -3,16 +3,17 @@
 <meta charset=UTF-8>
 <title>Fridge List</title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-<script src="scripts.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="assets/js/jquery.validate.min.js"></script>
+
 
 <script type = "text/javascript">
+
+$(document).ready(function() {
     function ValidateEmail(email) {
         var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
         return expr.test(email);
     };
-    $("#submit").live("click", function () {
+    $("#submit").on("click", function () {
         if (!ValidateEmail($("#txtEmail").val())) {
             alert("Invalid email address.");
         }
@@ -20,6 +21,7 @@
             alert("Valid email address.");
         }
     });
+  });
 </script>
 
 
@@ -52,8 +54,8 @@
   <h2>Register for a Fridge List Account:</h2>
         <p>
 
-        <form method = "post" action = "register.php" id="register-form">
-        First Name: <input type="text" name="firstName" id="firstname"><br><
+        <form method = "post" action = "view-scripts/register.php" id="register-form">
+        First Name: <input type="text" name="firstName" id="firstname"><br>
       
 
         Last Name: <input type="text" name="lastName" id="lastname"><br>

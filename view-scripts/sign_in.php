@@ -2,7 +2,7 @@
 
 
 	//require db connection
-	require 'connect/dbconnect.php';
+	require '../connect/dbconnect.php';
 
 	$is_ajax = $_REQUEST['is_ajax'];
 	if(isset($is_ajax) && $is_ajax) {
