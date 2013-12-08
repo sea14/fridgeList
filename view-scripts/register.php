@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<head>
-<meta charset=UTF-8>
-<title>Fridge List</title>
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-<script src="scripts.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-</head>
-  
-  <body>
-
 <?php
   
         ini_set('display_errors',1);
@@ -43,44 +32,3 @@
 
 
 ?>
-
-
-
-  <div id="logo">
-  <a href="a2.html"><img src="fridgeList_logo.png" alt="Fridge List Logo"/></a>
- <p>&nbsp; &nbsp; an application designed for the busy and hungry! 
-  </div> 
-  
-  <div id="register">
-  <h3><a href="sign_in.php">Sign In</a>/<a href="register.php">Register</a></h3>
-  </div>
-  
-<div id="pagewrap">
-<div class="clear"></div>
-<div id="navigation">
-<a href="a2.php" id="home">Home</a>
-<a href="index.html" id="about">About</a>
-<a href="list.php" id="list">My List</a>
-<a href="recipes.php" id="recipes">Recipes</a>
-
-</div>  
-
-  <div id="main">
-  <h2>Register for a Fridge List Account:</h2>
-        <p>
-
-        <form method = "post" action = "register.php">
-        First Name: <input type="text" name="firstName"><br>
-        Last Name: <input type="text" name="lastName"><br>
-        Email: <input type="text" name="email" id="email"><br>
-        Confirm Email: <input type="text" name="confirm"><br>
-        Password: <input type="password" name="password" id="password"><br>
-  <input type="submit" value="submit">
-
-        </form>
-        </p>
-   </div>
-
-</body>
-
-</html>
