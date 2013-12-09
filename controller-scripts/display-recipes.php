@@ -3,6 +3,15 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 session_start();
 
+  if(isset($_SESSION[''])){
+
+    echo 'Welcome,' . $_SESSION[''] . '<br> You are logged in. Below, you may see and edit your recipes.'
+  }
+    else{
+
+          echo "Hi there, do you want to <a href='sign_in.php'>login?</a> or <a/> <a href='register.php'>create an account?</a>";
+    }
+
 
 ?>
 <!DOCTYPE html>

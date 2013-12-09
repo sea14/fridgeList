@@ -10,27 +10,21 @@ session_start();
     //I hate to do this without prepared statements, buuut, in the interest of getting it operational
   
 
-    $email = $mysli->real_escape_string($_POST['email']);
+    $email = $mysqli->real_escape_string($_POST['email']);
     $password = $mysqli->real_escape_string(md5($_POST['password']));
 
-    $query = "SELECT * FROM users WHERE email = '$email' "."and password = '$password'";
+    $query = "SELECT firstName, lastName FROM users WHERE email = '$email' "."and password = '$password'";
 
     $result = mysqli_query($mysqli, $query) or die(mysqli_error ());
 
-    $num_rows = mysqli_num_rows($result);
-
-     
-
       if($num_rows > 0){
 
-        echo "true";
-        $_SESSION['email'] = $row['email'];
+        $_SESSION['email'] = $email;
+        echo $email;      
 
       }else{
 
-        echo $email . '<br>';
-        echo $password . '<br>';
-        echo "We could not log you in. Sorry!";
+        echo "<div id='login'>We could not log you in. Sorry!</div>";
 
       }
   }
@@ -91,10 +85,8 @@ session_start();
         Password: <input type="password" id="password"  name="password"><br>
    <input type="submit" id="submit" value="submit">
 
-   <div id="userinfo"><? echo $_SESSION["email"] ?> </div>
 
 
-   </div>
   </div>
 
 
