@@ -40,9 +40,9 @@ session_start();
 
   <?php
 
-  if(isset($_SESSION['email'])){
+  if(isset($currentUser) ){
 
-    echo 'Welcome,' . $_SESSION['email'] . '<br> You are logged in. Below, you may see and edit your recipes.';
+    echo 'Welcome,' . $currentUser . '<br> You are logged in. Below, you may see and edit your lists.';
   }
     else{
 

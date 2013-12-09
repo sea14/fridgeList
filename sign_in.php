@@ -38,7 +38,7 @@ session_start();
     $email = $mysqli->real_escape_string($_POST['email']);
     $password = $mysqli->real_escape_string(md5($_POST['password']));
 
-    $query = "SELECT firstName, lastName FROM users WHERE email = '$email' "."and password = '$password'";
+    $query = "SELECT firstName, lastName, user_id FROM users WHERE email = '$email' "."and password = '$password'";
 
     $result = mysqli_query($mysqli, $query) or die(mysqli_error ());
 
@@ -47,7 +47,8 @@ session_start();
 
    if($num_rows > 0){
 
-        $_SESSION['email'] = $row['email'];
+        
+        $_SESSION['user_id'] = $currentUser;
         
       }else{
 

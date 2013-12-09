@@ -1,6 +1,8 @@
 <?php
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 session_start();
+
+
 ?>
 <!DOCTYPE html>
 <meta charset=UTF-8>
@@ -39,9 +41,9 @@ session_start();
 
 <?php
 
-    if(isset($_SESSION['email'])){
+    if(isset($currentUser) ){
 
-    echo 'Welcome,' . $_SESSION['email'] . '<br> You are logged in. Below, you may see and edit your recipes.';
+    echo 'Welcome,' . $currentUser . '<br> You are logged in. Below, you may see and edit your recipes.';
   }
     else{
 
