@@ -48,7 +48,7 @@ session_start();
    if($num_rows > 0){
 
         
-        $_SESSION['user_id'] = $currentUser;
+        $_SESSION['user_id'] = $email;
         
       }else{
 

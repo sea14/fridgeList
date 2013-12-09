@@ -1,6 +1,7 @@
 <?php
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 session_start();
+echo "Our session email is ".$_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -8,21 +9,16 @@ session_start();
     <title>Fridge List</title>
 	<link href="../style.css" rel="stylesheet" type="text/css" media="screen" />
 
-
-
   </head>
   <body>
 
-
-
-
  <div id="logo">
-  <a href="a2.php"><img src="../fridgeList_logo.png" alt="Fridge List Logo"></a>
+  <a href="../a2.php"><img src="../fridgeList_logo.png" alt="Fridge List Logo"></a>
  <p>&nbsp; &nbsp; an application designed for the busy and hungry! 
   </div> 
   
   <div id="register">
-	<h3><a href="sign_in.php">Sign In</a>/<a href="register.php">Register</a></h3>
+	<h3><a href="../sign_in.php">Sign In</a>/<a href="../register.php">Register</a></h3>
 	</div>
 	
 <div id="pagewrap">
@@ -36,7 +32,7 @@ session_start();
 </div>	
 
 	<div id="main">
-	<p><a href="register.php">Register</a> or <a href="sign_in.php">sign in</a> to start creating your grocery lists!<br /></p><br />
+	<p><a href="../register.php">Register</a> or <a href="../sign_in.php">sign in</a> to start creating your grocery lists!<br /></p><br />
 
   <?php
 
