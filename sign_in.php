@@ -1,37 +1,3 @@
-<?php
-ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
-session_start();
-  //require db connection
-  require 'connect/dbconnect.php';
-
-  //check if username and password are set. if so, try to log user in
-  if(isset($_POST['email']) && isset($_POST['password']) ){
-
-    //I hate to do this without prepared statements, buuut, in the interest of getting it operational
-  
-
-    $email = $mysqli->real_escape_string($_POST['email']);
-    $password = $mysqli->real_escape_string(md5($_POST['password']));
-
-    $query = "SELECT firstName, lastName FROM users WHERE email = '$email' "."and password = '$password'";
-
-    $result = mysqli_query($mysqli, $query) or die(mysqli_error ());
-
-    $num_rows = mysqli_num_rows($result);
-
-      if($num_rows > 0){
-
-        $_SESSION['email'] = $row['email'];
-        echo "Congratulations! You logged in successfully!";
-
-
-      }else{
-
-        echo "<div id='login'>We could not log you in. Sorry!</div>";
-
-      }
-  }
-?>
 
 <!DOCTYPE html>
 <meta charset=UTF-8>
@@ -56,6 +22,42 @@ session_start();
   </script> 
   </head>
   <body>
+
+<?php
+ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
+session_start();
+  //require db connection
+  require 'connect/dbconnect.php';
+
+  //check if username and password are set. if so, try to log user in
+  if(isset($_POST['email']) && isset($_POST['password']) ){
+
+    //I hate to do this without prepared statements, buuut, in the interest of getting it operational
+  
+
+    $email = $mysqli->real_escape_string($_POST['email']);
+    $password = $mysqli->real_escape_string(md5($_POST['password']));
+
+    $query = "SELECT firstName, lastName FROM users WHERE email = '$email' "."and password = '$password'";
+
+    $result = mysqli_query($mysqli, $query) or die(mysqli_error ());
+
+    $num_rows = mysqli_num_rows($result);
+
+
+   if($num_rows > 0){
+
+        $_SESSION['email'] = $row['email'];
+        
+      }else{
+
+       
+
+      }
+  }
+
+
+?>
 
 
 
@@ -90,8 +92,25 @@ session_start();
 
 
 
-  </div>
+    <?php
 
+      if(isset($_POST['email']) && isset($_POST['password']) ){
+
+
+         if($num_rows > 0){
+
+        $_SESSION['email'] = $row['email'];
+
+          echo "<br><h2>Congratulations! You are logged in now!</h2>";
+        
+      }else{
+
+        echo "<br><h2>Sorry, we could not log you in successfully.</h2>";       
+
+       }
+    }
+?>
+      </div>
 
 
    </body>
