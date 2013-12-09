@@ -95,8 +95,8 @@ $(document).ready(function() {
 <div id="navigation">
 <a href="a2.php" id="home">Home</a>
 <a href="index.html" id="about">About</a>
-<a href="list.php" id="list">My List</a>
-<a href="recipes.php" id="recipes">Recipes</a>
+<a href="controller-scripts/display-lists.php" id="list">My Lists</a>
+<a href="controller-scripts/display-recipes.php" id="recipes">Recipes</a>
 
 </div>  
 

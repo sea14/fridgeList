@@ -6,7 +6,7 @@ session_start();
 
   if(isset($_SESSION['email'])){
 
-    echo 'Welcome,' . $_SESSION['email'] . '<br> You are logged in. Below, you may see and edit your recipes.'
+    echo 'Welcome,' . $_SESSION['email'] . '<br> You are logged in. Below, you may see and edit your recipes.';
   }
     else{
 
@@ -20,7 +20,7 @@ session_start();
 <!DOCTYPE html>
 <meta charset=UTF-8>
     <title>Fridge List</title>
-	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="../style.css" rel="stylesheet" type="text/css" media="screen" />
 
 
 
@@ -44,8 +44,8 @@ session_start();
 <div id="navigation">
 <a href="a2.php" id="home">Home</a>
 <a href="index.html" id="about">About</a>
-<a href="lists.php" id="list">My List</a>
-<a href="recipes.php" id="recipes">Recipes</a>
+<a href="controller-scripts/display-lists.php" id="list">My Lists</a>
+<a href="controller-scripts/display-recipes.php" id="recipes">Recipes</a>
 
 </div>	
 

@@ -17,10 +17,13 @@ session_start();
 
     $result = mysqli_query($mysqli, $query) or die(mysqli_error ());
 
+    $num_rows = mysqli_num_rows($result);
+
       if($num_rows > 0){
 
-        $_SESSION['email'] = $email;
-        echo $email;      
+        $_SESSION['email'] = $row['email'];
+        echo "Congratulations! You logged in successfully!";
+
 
       }else{
 
@@ -71,8 +74,8 @@ session_start();
 <div id="navigation">
 <a href="a2.php" id="home">Home</a>
 <a href="index.html" id="about">About</a>
-<a href="lists.php" id="list">My List</a>
-<a href="recipes.php" id="recipes">Recipes</a>
+<a href="controller-scripts/display-lists.php" id="list">My Lists</a>
+<a href="controller-scripts/display-recipes.php" id="recipes">Recipes</a>
 
 </div>	
 

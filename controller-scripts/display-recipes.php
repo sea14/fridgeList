@@ -3,9 +3,9 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 session_start();
 
-  if(isset($_SESSION[''])){
+  if(isset($_SESSION['email'])){
 
-    echo 'Welcome,' . $_SESSION[''] . '<br> You are logged in. Below, you may see and edit your recipes.'
+    echo 'Welcome,' . $_SESSION['email'] . '<br> You are logged in. Below, you may see and edit your recipes.';
   }
     else{
 
@@ -41,8 +41,8 @@ session_start();
 <div id="navigation">
 <a href="a2.php" id="home">Home</a>
 <a href="index.html" id="about">About</a>
-<a href="lists.php" id="list">My List</a>
-<a href="recipes.php" id="recipes">Recipes</a>
+<a href="controller-scripts/display-lists.php" id="list">My Lists</a>
+<a href="controller-scripts/display-recipes.php" id="recipes">Recipes</a>
 
 </div>	
 
