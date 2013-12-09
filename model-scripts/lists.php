@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('America/New_York');
 
-class list
+class list_info
 {
 	private $list_id;
 	private $user_id;
@@ -13,9 +13,9 @@ class list
 
 	require 'connect/dbconnect.php';
 	
-	$cleanUser = mysqli->real_escape_string($user_id);
-	$cleanItems = mysqli->real_escape_string($items);
-	$cleanList = mysqli->real_escape_string($listName);
+	$cleanUser = $mysqli->real_escape_string($user_id);
+	$cleanItems = $mysqli->real_escape_string($items);
+	$cleanList = $mysqli->real_escape_string($listName);
 
 	$result = $mysqli->query("insert into lists values '$cleanUser',
 		'$cleanItems', '$cleanList')";

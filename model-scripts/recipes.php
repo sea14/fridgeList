@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('America/New_York');
 
-class list
+class recipes
 {
 	private $recipe_id;
 	private $user_id;
@@ -13,12 +13,12 @@ class list
 
 	require 'connect/dbconnect.php';
 	
-	$cleanUser = mysqli->real_escape_string($user_id);
-	$cleanURL = mysqli->real_escape_string($url);
-	$cleanName = mysqli->real_escape_string($recipename);
+	$cleanUser = $mysqli->real_escape_string($user_id);
+	$cleanURL = $mysqli->real_escape_string($url);
+	$cleanName = $mysqli->real_escape_string($recipename);
 
 	$result = $mysqli->query("insert into users values '$cleanUser',
-		'$cleanItems', '$cleanList')";
+		'$cleanItems', '$cleanList'");
 
 	if(result) {
 
