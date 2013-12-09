@@ -104,9 +104,9 @@ public function delete(){
 public function getJSON() {
 	
 	$json_obj = array('list_id' => $this->list_id,
-			   'list_name => $this->list_name,
-			   'items' => $this -> items,
-			   'user_id' => $this -> user_id
+			   'list_name' => $this->list_name,
+			   'items' => $this->items,
+			   'user_id' => $this->user_id
 	}
      return json_encode($json_obj);
    }
