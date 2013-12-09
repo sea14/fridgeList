@@ -1,45 +1,34 @@
 <?php
-	//this contains code for accessing lists
+date_default_timezone_set('America/New_York');
+
+class list
+{
+	private $list_id;
+	private $user_id;
+	private $items;
+	private $listName;
+
+
+	public static function create($user_id, $items, $listName){
+
+	require 'connect/dbconnect.php';
 	
+	$cleanUser = mysqli->real_escape_string($user_id);
+	$cleanItems = mysqli->real_escape_string($items);
+	$cleanList = mysqli->real_escape_string($listName);
 
-	//get user by id
-	function get_list_by_id($id)
-	{
-		$lists_list = array();
+	$result = $mysqli->query("insert into users values '$cleanUser',
+		'$cleanItems', '$cleanList')";
 
+	if(result) {
 
-		return $lists_info;
-
+		$list_id = $mysqli->insert_id;
+		return new list($list_id, $user_id, $items, $listName)
 	}
-
-	function_get_lists_list()
-	{
-	
-
-		return $lists_list
-	}
-
-	$user_url = array("get_lists_list", "get_list");
-
-	$value = "An error has occurred";
-
-	if (isset($_GET["action"]) && in_array($_GET["action"], $possible_url))
-	{
-	switch ($_GET["action])
-	 {
-	   case = "get_lists_list";
-		$value = get_lists_list();
-		break;
-	   case "get_list";
-		if (isset($_GET["id"]))
-		   $value = get_list_by_id($_GET["id"]);
-		else
-			$value = "Missing argument";
-		break;
-	}
-
+	return null;
 }
 
-	//return json array
-	exit(json_encode($value));
-?>
+
+	}
+
+	}
