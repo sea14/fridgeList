@@ -8,12 +8,13 @@
 <?php
 	ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 	session_start();
-	$old_user = $_SESSION['email'];
-	$_SESSION = array();
-	if (isset_($_COOKIE[session_name()])) {
+	$old_user = $_SESSION['user_id'];
+	
+		$_SESSION = array();
+		if (isset($_COOKIE[session_name()])) {
 
-		setcookie(session_name(), '', time()-42000, '/');
-		unset($_COOKIE[session_name()]);
+			setcookie(session_name(), '', time()-42000, '/');
+			unset($_COOKIE[session_name()]);
 	}
 	session_destroy();
 ?>
@@ -41,6 +42,18 @@
 </div>	
 
 	<div id="main">
+
+<?php
+		if(!empty($old_user)){
+
+			echo "You are now logged out! <br>";
+
+		}else{
+
+			echo "Hey, how did you get here? You weren't even logged in!";
+
+		}
+?>
 	
    </div>
   </div>

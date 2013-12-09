@@ -6,9 +6,12 @@ session_start();
 
 <!DOCTYPE html>
 <meta charset=UTF-8>
+  <head>
     <title>Fridge List</title>
 	<link href="../style.css" rel="stylesheet" type="text/css" media="screen" />
-
+	<script src="/Courses/comp426-f13/jquery-1.10.2.js"></script>
+    <script src="../groceryList.js"></script>
+    <script src="../groceryListViewer.js"></script>
   </head>
   <body>
 
@@ -38,7 +41,8 @@ session_start();
 
   if(isset($_SESSION['user_id'])) {
 
-    echo 'Welcome,' . $currentUser . '<br> You are logged in. Below, you may see and edit your lists.';
+    echo 'Welcome,' . $currentUser . '<br> You are logged in. Below, you may see and edit your lists. <br>';
+    echo "Alternatively, you may also <a href='../logout.php'>logout</a>.";
   }
     else{
 
@@ -47,8 +51,12 @@ session_start();
 
 ?>
 
-
-
+Don't have any lists? Create some using the form below!
+<form id="groceryList">
+	<input name=listName type=text><br />
+	<input name=items type=text><br />
+	<button type=submit>Create</button>
+</form>
    </div>
   </div>
 
