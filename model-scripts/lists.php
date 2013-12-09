@@ -17,7 +17,7 @@ class list
 	$cleanItems = mysqli->real_escape_string($items);
 	$cleanList = mysqli->real_escape_string($listName);
 
-	$result = $mysqli->query("insert into users values '$cleanUser',
+	$result = $mysqli->query("insert into lists values '$cleanUser',
 		'$cleanItems', '$cleanList')";
 
 	if(result) {
