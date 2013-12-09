@@ -1,7 +1,7 @@
 <?php
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 session_start();
-echo "Our session email is ".$_SESSION['user_id'];
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ echo "Our session email is ".$_SESSION['user_id'];
 
   <?php
 
-  if(isset($currentUser) ){
+  if(isset($_SESSION['user_id'])) {
 
     echo 'Welcome,' . $currentUser . '<br> You are logged in. Below, you may see and edit your lists.';
   }
