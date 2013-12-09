@@ -10,8 +10,8 @@ session_start();
     //I hate to do this without prepared statements, buuut, in the interest of getting it operational
   
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = $mysli->real_escape_string($_POST['email']);
+    $password = $mysqli->real_escape_string(md5($_POST['password']));
 
     $query = "SELECT * FROM users WHERE email = '$email' "."and password = '$password'";
 

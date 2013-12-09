@@ -6,14 +6,9 @@
   </head>
 
 <?php
-
-/*if the user clicks to logout
-* we will destroy the session
- */
-
-
+	ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 	session_start();
-	$old_user = $_SESSION['valid_user'};
+	$old_user = $_SESSION['email'};
 	$_SESSION = array();
 	if (isset_($_COOKIE[session_name()])) {
 
