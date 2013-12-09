@@ -12,20 +12,6 @@ session_start();
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
   
 
-  <script type="text/javascript">
-  $("#loginForm").submit(function(e){
-    e.preventDefault();
-    $.post('sign_in.php', $(this).serialize(), function(data){
-
-      $("#showusers").load("model-views/user.php");
-      $("#userinfo").text(data);
-      $("#loginForm").remove();
-
-     });
-
- });
-
-  </script> 
   </head>
   <body>
 

@@ -9,23 +9,9 @@ session_start();
 <meta charset=UTF-8>
     <title>Fridge List</title>
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  
 
-  <script type="text/javascript">
-  $("#loginForm").submit(function(e){
-    e.preventDefault();
-    $.post('sign_in.php', $(this).serialize(), function(data){
 
-      $("#showusers").load("model-views/user.php");
-      $("#userinfo").text(data);
-      $("#loginForm").remove();
 
-     });
-
- });
-
-  </script> 
   </head>
   <body>
 
@@ -54,7 +40,7 @@ session_start();
 	<div id="main">
 	<p><a href="register.php">Register</a> or <a href="sign_in.php">sign in</a> to start creating your grocery lists!<br /></p><br />
 
-	
+
 
    </div>
   </div>
