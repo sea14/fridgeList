@@ -6,7 +6,7 @@ $(document).ready(function () {
 //I'm referring to lists.php... might not be right 
 	$.ajax(url_base + "/lists.php", 
 	//should GET lists and load them
-		{type: GET",
+		{type: "GET",
 			dataType: "json",
 			success: function(groceryList_ids, status, jqXHR) {
 			for (var i=0; i<groceryList_ids.length; i++) {

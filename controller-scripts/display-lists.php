@@ -2,12 +2,7 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 session_start();
 
-
- $content = $_POST['content']; //get posted data
- $content = mysqli_real_escape_string($content);  //escape string
- 
-
- ?>
+?>
 
 <!DOCTYPE html>
 <meta charset=UTF-8>
@@ -15,10 +10,68 @@ session_start();
     <title>Fridge List</title>
 	<link href="../style.css" rel="stylesheet" type="text/css" media="screen" />
 	<script src="/Courses/comp426-f13/jquery-1.10.2.js"></script>
-    <script src="groceryList.js"></script>
-    <script src="groceryListViewer.js"></script>
+    <script src="../groceryList.js"></script>
+    <script src="../groceryListViewer.js"></script>
+
+    <script type="text/javascript">
+
+    	$(function()){
+
+    		$('#save').click(function(){
+
+    			var listname = $('#listname').val();
+    			var items = $('#items').val();
+
+    			$.ajax({
+
+    				url: 'display-lists.php',
+    				type: 'POST',
+    				data: 'listname ='+listname +'&items=' + items,
+
+    				success: function(result){
+
+    				});
+
+    		}
+
+    	});
+  });
+
   </head>
   <body>
+
+  	<?php
+
+  		require '../connect/dbconnect.php';
+  		if(isset($_POST['save'])){
+
+  			$listname = isset($_POST['listname']);
+  			$items = isset($_POST['items']);
+
+  			$query = "INSERT into lists ('listname', 'items') VALUES (?, ?)";
+  			if($stmt->prepar($query)){
+
+  				$stmt->bind_param('ss', $listname, $items);
+  				$stmt->execute();
+
+  			}
+  			if($stmt){
+
+  				echo "Congratulations! You created a new list!";
+
+  			}else{
+
+  				echo "Uh-oh, there was an error. Please try again.";
+
+  			}
+
+  		}
+
+
+  	?>
+
+
+
 
  <div id="logo">
   <a href="../a2.php"><img src="../fridgeList_logo.png" alt="Fridge List Logo"></a>
@@ -57,40 +110,15 @@ session_start();
 ?>
 <div id="groceryListViewer"></div>
 	<div id="content">
-		<div id="editable" contentEditable="true">
-		<?php
-		//get data from database.
-			include("http://wwwp.cs.unc.edu/Courses/comp426-f13/seaustin/project/testing/dbconnect.php");
-			$sql = mysqli_query("select listName, items from lists where user_id = 27");
-			$row = mysqli_fetch_array($sql);
-			echo $row['text'];
-		?>
-		</div>
 </div>
 <br />
-Don't have any lists? Create some using the form below!<br /><br />
+<p>Create a list using the form below!<br /><br />
 
-<form id="new_list_form">
-	Grocery List Name: <input name=listName type=text><br />
-	Items: <input name=items type=text size=70><br /><br />
+<form id="new_list_form" action="display-lists.php">
+	Grocery List Name: <input name='listName' id='listname' type=text><br />
+	Items: <input id='items' name='items' type=text size=70><br /><br />
 	<button id="save">Create A New Grocery List</button>
 </form>
-
- <?php
-
-    $sql = "UPDATE lists
-            SET text = '$content'
-            WHERE element_id = '1'
-            ";
- 
-    if (mysqli_query($sql))
-    {
-        echo 1;
-    }
- 
-?>
-
-
    </div>
   </div>
 
