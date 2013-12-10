@@ -1,6 +1,7 @@
 <?php
-ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 session_start();
+echo session_id();
+echo $first;
 
 ?>
 
@@ -13,38 +14,15 @@ session_start();
     <script src="../groceryList.js"></script>
     <script src="../groceryListViewer.js"></script>
 
-    <script type="text/javascript">
-
-    	$(function()){
-
-    		$('#save').click(function(){
-
-    			var listname = $('#listname').val();
-    			var items = $('#items').val();
-
-    			$.ajax({
-
-    				url: 'display-lists.php',
-    				type: 'POST',
-    				data: 'listname ='+listname +'&items=' + items,
-
-    				success: function(result){
-
-    				});
-
-    		}
-
-    	});
-  });
-
   </head>
   <body>
 
   	<?php
 
-  		require '../connect/dbconnect.php';
+  		require '/afs/cs.unc.edu/project/courses/comp426-f13/public_html/seaustin/project/connect/dbconnect.php';
   		if(isset($_POST['save'])){
 
+  			
   			$listname = isset($_POST['listname']);
   			$items = isset($_POST['items']);
 
@@ -99,7 +77,15 @@ session_start();
 
   if(isset($_SESSION['user_id'])) {
 
-    echo 'Welcome,' . $currentUser . '<br> You are logged in. Below, you may see and edit your lists. <br>';
+    echo 'Welcome,' . $_SESSION['user_id'] . '<br> You are logged in. Below, you may see your lists. <br>';
+
+
+    //connect to db
+    //query for user's lists
+    //output them in a table
+
+
+
     echo "Alternatively, you may also <a href='../logout.php'>logout</a>.";
   }
     else{
@@ -112,12 +98,12 @@ session_start();
 	<div id="content">
 </div>
 <br />
-<p>Create a list using the form below!<br /><br />
+<p>Don't have any lists? Create a list using the form below!<br /><br />
 
 <form id="new_list_form" action="display-lists.php">
-	Grocery List Name: <input name='listName' id='listname' type=text><br />
-	Items: <input id='items' name='items' type=text size=70><br /><br />
-	<button id="save">Create A New Grocery List</button>
+	Grocery List Name: <input name='listname' id='listname' type=text><br />
+	Items: <input id='items' name='items' type=text><br /><br />
+	<button id="save" name="save">Create A New Grocery List</button>
 </form>
    </div>
   </div>

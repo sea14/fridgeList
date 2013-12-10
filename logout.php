@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <meta charset=UTF-8>
     <title>Fridge List</title>
@@ -6,8 +10,6 @@
   </head>
 
 <?php
-	ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
-	session_start();
 	$old_user = $_SESSION['user_id'];
 	
 		$_SESSION = array();

@@ -1,9 +1,11 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <meta charset=UTF-8>
     <title>Fridge List</title>
-	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   
 
   <script type="text/javascript">
@@ -25,7 +27,7 @@
 
 <?php
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
-session_start();
+echo session_id();
   //require db connection
   require 'connect/dbconnect.php';
 
@@ -43,12 +45,14 @@ session_start();
     $result = mysqli_query($mysqli, $query) or die(mysqli_error ());
 
     $num_rows = mysqli_num_rows($result);
-
+    $first = $num_rows[0];
 
    if($num_rows > 0){
 
         
         $_SESSION['user_id'] = $email;
+        $_SESSION['firstName'] = $first;
+
         
       }else{
 
@@ -69,9 +73,9 @@ session_start();
   </div> 
   
   <div id="register">
-	<h3><a href="sign_in.php">Sign In</a>/<a href="register.php">Register</a></h3>
-	</div>
-	
+  <h3><a href="sign_in.php">Sign In</a>/<a href="register.php">Register</a></h3>
+  </div>
+  
 <div id="pagewrap">
 <div class="clear"></div>
 <div id="navigation">
@@ -80,13 +84,13 @@ session_start();
 <a href="controller-scripts/display-lists.php" id="list">My Lists</a>
 <a href="controller-scripts/display-recipes.php" id="recipes">Recipes</a>
 
-</div>	
+</div>  
 
-	<div id="main">
-	<p><a href="register.php">Register</a> or <a href="sign_in.php">sign in</a> to start creating your grocery lists!<br /></p><br />
+  <div id="main">
+  <p><a href="register.php">Register</a> or <a href="sign_in.php">sign in</a> to start creating your grocery lists!<br /></p><br />
 
 
-	<form method = "post" id="loginForm"  action = "sign_in.php">
+  <form method = "post" id="loginForm"  action = "sign_in.php">
         Email: <input type="text" id="email"  name="email"><br>
         Password: <input type="password" id="password"  name="password"><br>
    <input type="submit" id="submit" value="submit">
