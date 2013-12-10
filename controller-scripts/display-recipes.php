@@ -1,9 +1,6 @@
 <?php
-ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 session_start();
-
-
-
+echo session_id();
 ?>
 <!DOCTYPE html>
 <meta charset=UTF-8>
@@ -42,15 +39,17 @@ session_start();
 
 <?php
 
-    if(isset($_SESSION['user_id']) ){
+   
+    echo 'Welcome, ' . $_SESSION['user_id'] . '<br> You are logged in. Below, you may see your lists. <br>';
 
-    echo 'Welcome,' . $currentUser . '<br> You are logged in. Below, you may see and edit your recipes.';
-  }
-    else{
 
-          echo "Hi there, do you want to <a href='../sign_in.php'>login?</a> or <a/> <a href='../register.php'>create an account?</a>";
-    }
+    //connect to db
+    //query for user's lists
+    //output them in a table
 
+
+
+    echo "Alternatively, you may also <a href='../logout.php'>logout</a>.";
 
 ?>
 

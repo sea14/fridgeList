@@ -1,17 +1,40 @@
 
 <!DOCTYPE html>
 <meta charset=UTF-8>
-    <title>Fridge List Application Intro Page</title>
- </head>
+    <title>Fridge List</title>
+	<link href="testing/style.css" rel="stylesheet" type="text/css" media="screen" />
+	<script src="scripts.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  </head>
   
   <body>
-  <h2>Fridge List</h2>
-  <h3>Assignment 2 for COMP 426</h3>
-  <p><u><strong>Description of what Web Application Does:</strong></u> Fridge List allows people with busy schedules to easily create and organize grocery lists. Once you create an account, you can quickly store and organize grocery lists for later use. These grocery lists are tied to recipes, allowing you to determine what ingredients you still need for your latest culinary creations! More than that, the user can also use social networking features in order to create invitations for cook-outs and get-togethers! There will eventually be a "Sales" RSS Feed at the top always keeps users aware of money-saving opportunities for food-related purchases!</p>
-  <p><u><strong>Group Members Included in this Project:</strong></u> Sharon Austin and Olivia Dorsey</p>
-  <p><a href="http://www.cs.unc.edu/Courses/comp426-f13/seaustin/project/a2.html">Visit Our Mock-up Page!</a></p>
-  <h2>Here is our scanned design sketch!</h2>
-  <img src="mockup.JPG" height="800" width="626" alt="Scanned Design Sketch for Assignment 2" />
-  </body>
- </html>
 
+  <div id="logo">
+  <a href="a2.php"><img src="fridgeList_logo.png" alt="Fridge List Logo"></a>
+ <p>&nbsp; &nbsp; an application designed for the busy and hungry! 
+  </div> 
+  
+  <div id="register">
+	<h3><a href="sign_in.php">Sign In</a>/<a href="register.php">Register</a></h3>
+	</div>
+	
+<div id="pagewrap">
+<div class="clear"></div>
+<div id="navigation">
+<a href="testing/a2.php" id="home">Home</a>
+<a href="index.html" id="about">About</a>
+<a href="http://wwwp.cs.unc.edu/Courses/comp426-f13/seaustin/project/listTesting/controller-scripts/display-lists.php" id="list">My List</a>
+<a href="http://wwwp.cs.unc.edu/Courses/comp426-f13/seaustin/project/listTesting/controller-scripts/display-recipes.php" id="recipes">Recipes</a>
+
+</div>	
+
+	<div id="main">
+	<p><a href="register.php">Register</a> or <a href="sign_in.php">sign in</a> to start creating your grocery lists!<br /></p><br />
+<h2>Fridge List</h2><br />
+ <p><a href="mockup.jpg"><img src="small_mockup.jpg" height="386" width="349" alt="Scanned Design Sketch for Assignment 2" /></a></p><br />
+<u><strong>Description of what our web application does:</strong></u> Fridge List allows people with busy schedules to quickly and easily create grocery lists. Once you create an account, you can save grocery lists for later use. As a user, you are also allowed to save the URLs of recipes that you find online under your account profile. Together use your saved information to determine what ingredients you still need for your latest culinary creations!<br /><br />
+<u><strong>Group Members Included in this Project:</strong></u><br /> Sharon Austin and Olivia Dorsey
+    </div>
+  </div>
+   </body>
+ </html>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 echo session_id();
-echo $first;
+echo $_SESSION['firstName'];
 
 ?>
 
@@ -18,30 +18,22 @@ echo $first;
   <body>
 
   	<?php
+  		echo "here";
 
   		require '/afs/cs.unc.edu/project/courses/comp426-f13/public_html/seaustin/project/connect/dbconnect.php';
-  		if(isset($_POST['save'])){
-
+  		if( isset($_POST['listname']) && isset($_POST['items']) ){
+  				echo "here two";
   			
-  			$listname = isset($_POST['listname']);
-  			$items = isset($_POST['items']);
+  			$listname = $mysqli->real_escape_string($_POST['listname']);
+  			$items = $mysqli->real_escape_string($_POST['items']);
+  			$email = $_SESSION['user_id'];
 
-  			$query = "INSERT into lists ('listname', 'items') VALUES (?, ?)";
-  			if($stmt->prepar($query)){
+  			$query = "INSERT into lists ('listname', 'items', 'email') VALUES ('".$listname."', '".$items."', '".$email."')";
+  			
+  			$result = mysqli_query($mysqli, $query) or die(mysqli_error ());
 
-  				$stmt->bind_param('ss', $listname, $items);
-  				$stmt->execute();
+  			$num_rows = mysqli_num_rows($result);
 
-  			}
-  			if($stmt){
-
-  				echo "Congratulations! You created a new list!";
-
-  			}else{
-
-  				echo "Uh-oh, there was an error. Please try again.";
-
-  			}
 
   		}
 
@@ -77,7 +69,7 @@ echo $first;
 
   if(isset($_SESSION['user_id'])) {
 
-    echo 'Welcome,' . $_SESSION['user_id'] . '<br> You are logged in. Below, you may see your lists. <br>';
+    echo 'Welcome, ' . $_SESSION['user_id'] . '<br> You are logged in. Below, you may see your lists. <br>';
 
 
     //connect to db
@@ -97,14 +89,31 @@ echo $first;
 <div id="groceryListViewer"></div>
 	<div id="content">
 </div>
-<br />
-<p>Don't have any lists? Create a list using the form below!<br /><br />
+<br>
+<p>Don't have any lists? Create a list using the form below!<br>
 
 <form id="new_list_form" action="display-lists.php">
-	Grocery List Name: <input name='listname' id='listname' type=text><br />
-	Items: <input id='items' name='items' type=text><br /><br />
-	<button id="save" name="save">Create A New Grocery List</button>
+	Grocery List Name: <input type = "text" name='listname' id='listname'><br>
+	Items: <input type="text" id='items' name='items'><br>
+ <input type="submit" value="submit" id="submit">
 </form>
+
+	<?php if( isset($_POST['listname']) && isset($_POST['items']) ){
+
+		if($num_rows > 0){
+
+			echo "<br><h2> You have a list! </h2>";
+
+		}else{
+
+			echo "Oops, we don't have a list for you yet!";
+
+		}
+
+
+	}
+
+?>
    </div>
   </div>
 

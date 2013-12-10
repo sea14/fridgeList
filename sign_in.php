@@ -105,6 +105,7 @@ echo session_id();
          if($num_rows > 0){
 
         $_SESSION['email'] = $row['email'];
+        $_SESSION['firstName'] = $row['firstName'];
 
           echo "<br><h2>Congratulations! You are logged in now!</h2>";
         
