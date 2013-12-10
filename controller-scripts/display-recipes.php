@@ -31,7 +31,7 @@ session_start();
 <div class="clear"></div>
 <div id="navigation">
 <a href="../a2.php" id="home">Home</a>
-<a href="http://www.cs.unc.edu/Courses/comp426-f13/seaustin/project/index.html" id="about">About</a>
+<a href="wwwp.cs.unc.edu/Courses/comp426-f13/seaustin/project/index.html" id="about">About</a>
 <a href="display-lists.php" id="list">My Lists</a>
 <a href="display-recipes.php" id="recipes">Recipes</a>
 

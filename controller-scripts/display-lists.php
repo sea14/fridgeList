@@ -2,7 +2,12 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/../session'));
 session_start();
 
-?>
+
+ $content = $_POST['content']; //get posted data
+ $content = mysqli_real_escape_string($content);  //escape string
+ 
+
+ ?>
 
 <!DOCTYPE html>
 <meta charset=UTF-8>
@@ -10,8 +15,8 @@ session_start();
     <title>Fridge List</title>
 	<link href="../style.css" rel="stylesheet" type="text/css" media="screen" />
 	<script src="/Courses/comp426-f13/jquery-1.10.2.js"></script>
-    <script src="../groceryList.js"></script>
-    <script src="../groceryListViewer.js"></script>
+    <script src="groceryList.js"></script>
+    <script src="groceryListViewer.js"></script>
   </head>
   <body>
 
@@ -28,7 +33,7 @@ session_start();
 <div class="clear"></div>
 <div id="navigation">
 <a href="../a2.php" id="home">Home</a>
-<a href="../index.html" id="about">About</a>
+<a href="wwwp.cs.unc.edu/Courses/comp426-f13/seaustin/project/index.html" id="about">About</a>
 <a href="display-lists.php" id="list">My Lists</a>
 <a href="display-recipes.php" id="recipes">Recipes</a>
 
@@ -50,13 +55,42 @@ session_start();
     }
 
 ?>
+<div id="groceryListViewer"></div>
+	<div id="content">
+		<div id="editable" contentEditable="true">
+		<?php
+		//get data from database.
+			include("http://wwwp.cs.unc.edu/Courses/comp426-f13/seaustin/project/testing/dbconnect.php");
+			$sql = mysqli_query("select listName, items from lists where user_id = 27");
+			$row = mysqli_fetch_array($sql);
+			echo $row['text'];
+		?>
+		</div>
+</div>
+<br />
+Don't have any lists? Create some using the form below!<br /><br />
 
-Don't have any lists? Create some using the form below!
-<form id="groceryList">
-	<input name=listName type=text><br />
-	<input name=items type=text><br />
-	<button type=submit>Create</button>
+<form id="new_list_form">
+	Grocery List Name: <input name=listName type=text><br />
+	Items: <input name=items type=text size=70><br /><br />
+	<button id="save">Create A New Grocery List</button>
 </form>
+
+ <?php
+
+    $sql = "UPDATE lists
+            SET text = '$content'
+            WHERE element_id = '1'
+            ";
+ 
+    if (mysqli_query($sql))
+    {
+        echo 1;
+    }
+ 
+?>
+
+
    </div>
   </div>
 
